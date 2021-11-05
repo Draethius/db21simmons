@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  h1= title
+  div(class="container-fluid")
+    div(class="row")
+      -
+        let stuff = [
+          {
+            "tatLocation":"arm",
+            "tatColor":"red",
+            "tatNum":1
+          },
+          {
+            "tatLocation":"chest",
+            "tatColor":"blue",
+            "tatNum":7
+          },
+          {
+            "tatLocation":"forehead",
+            "tatColor":"orange",
+            "tatNum":3
+          },
+        ]
+      each ply, index in stuff
+        div(class="col-sm-2") #{ply.tatLocation}
+        div(class="col-sm-2") #{ply.tatColor}
+        div(class="col-sm-2") #{ply.tatNum}
+
+
+

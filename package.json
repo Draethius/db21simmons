@@ -1,0 +1,20 @@
+i
+  "name": "fwb21Simmons",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www"
+  },
+  "dependencies": {
+    "cookie-parser": "~1.4.4",
+    "debug": "^4.3.2",
+    "express": "^4.17.1",
+    "http-errors": "^1.8.0",
+    "morgan": "^1.10.0",
+    "pug": "^3.0.2"
+  },
+  "description": "assignment 10",
+  "main": "app.js",
+  "author": "Michael Simmons",
+  "license": "ISC"
+}
