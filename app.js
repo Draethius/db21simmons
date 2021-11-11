@@ -4,6 +4,34 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
+var Tattoo = require("./models/tattoo");
+async function recreateDB(){
+	await Tattoo.deleteMany();
+
+	let instance1 = new Tattoo({tatNum:1, tatLocation:"arm", tatColor:"red"});
+	let instance2 = new Tattoo({tatNum:2, tatLocation:"leg", tatColor:"blue"});
+	let instance3 = new Tattoo({tatNum:3, tatLocation:"forehead", tatColor:"neon pink"});
+
+	instance1.save( function(err,doc) { 
+		if(err) return console.error(err);
+		console.log("First object saved")
+	});
+	instance2.save( function(err,doc) {
+		if(err) return console.error(err);
+		console.log("Second object saved")
+	});
+	instance3.save( function(err,doc) {
+		if(err) return console.error(err);
+		console.log("Third object saved")
+	});
+}
+let reseed = true;
+if(reseed) {recreateDB();}
+
+const connectionString = process.env.MONGO_CON;
+mongoose = require('mongoose');
+mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: true});
+
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
