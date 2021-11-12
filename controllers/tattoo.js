@@ -27,3 +27,14 @@ exports.tattoo_update_put = function(req, res) {
     res.send('NOT IMPLEMENTED: Tattoo update PUT' + req.params.id);
 };
 
+exports.tattoo_view_all_Page = async function(req, res) {
+	try{
+		theTattoos = await Tattoo.find();
+		res.render('tattoo', { title: 'Tattoo Search Results', results: theTattoos});
+	}
+	catch(err){
+		res.status(500);
+		res.send('{"error":${err}}');
+	}
+};
+
