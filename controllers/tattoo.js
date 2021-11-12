@@ -15,8 +15,20 @@ exports.tattoo_detail = function(req, res) {
     res.send('NOT IMPLEMENTED: Tattoo detail: ' + req.params.id);
 };
 
-exports.tattoo_create_post = function(req, res) {
-    res.send('NOT IMPLEMENTED: Tattoo create POST');
+exports.tattoo_create_post = async function(req, res) {
+	console.log(req.body)
+	let document = new Tattoo();
+	document.tatNum = req.body.tatNum;
+	document.tatColor = req.body.tatColor;
+	document.tatLocation = req.body.tatLocation;
+	try{
+		let result = await document.save();
+		res.send(result);
+	}
+	catch(err){
+		res.status(500);
+		res.send('{"error":${err}}');
+	}
 };
 
 exports.tattoo_delete = function(req, res) {
