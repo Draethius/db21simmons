@@ -34,7 +34,7 @@ mongoose.connect(connectionString, {useNewUrlParser: true, useUnifiedTopology: t
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-
+var resourceRouter = require('./routes/resource');
 var tattooRouter = require('./routes/tattoo');
 var addmodsRouter = require('./routes/addmods');
 var selectorRouter = require('./routes/selector');
@@ -53,7 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-
+app.use('/resource', resourceRouter);
 app.use('/tattoo', tattooRouter);
 app.use('/addmods', addmodsRouter);
 app.use('/selector', selectorRouter);

@@ -12,7 +12,8 @@
     "http-errors": "^1.8.0",
     "mongoose": "^6.0.12",
     "morgan": "^1.10.0",
-    "pug": "^3.0.2"
+    "pug": "^3.0.2",
+    "resource": "^0.8.1"
   },
   "description": "assignment 10",
   "main": "app.js",
