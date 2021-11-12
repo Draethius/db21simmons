@@ -11,8 +11,16 @@ exports.tattoo_list = async function(req,res){
 	}
 };
 
-exports.tattoo_detail = function(req, res) {
-    res.send('NOT IMPLEMENTED: Tattoo detail: ' + req.params.id);
+exports.tattoo_detail = async function(req, res) {
+	console.log("detail" + req.params.id)
+	try{
+		result = await Tattoo.findById(req.params.id)
+		res.send(result)
+	}
+	catch(error){
+		res.status(500)
+		res.send('{"error": document for id ${req.params.id} not found');
+	}
 };
 
 exports.tattoo_create_post = async function(req, res) {
