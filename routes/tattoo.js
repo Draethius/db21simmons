@@ -10,4 +10,6 @@ router.get('/detail',tattoo_controllers.tattoo_view_one_Page);
 
 router.get('/create',tattoo_controllers.tattoo_create_Page);
 
+router.get('/update',tattoo_controllers.tattoo_update_Page);
+
 module.exports = router;

@@ -1,0 +1,39 @@
+extends layout
+
+block content
+	h1= title
+	-let tattooid = toShow._id
+	-let tatNum = toShow.tatNum
+	-let tatColor = toShow.tatColor
+	-let tatLocation = toShow.tatLocation
+
+	div.row(class='mb-2')
+		div.mr-1 ID is
+		div #{tattooid}
+	- let actionid = "/resource/tattoo/" + tattooid
+	form(id='TattooForm', action = actionid, method="PUT")
+		div.form-group
+			label.tattooAttr(for='tatNum') Number of Tattoos
+			input#tatNum(type='number',name='tatNum', value=tatNum)
+		div.form-group
+			label.tattooAttr(for='tatColor') Tattoo Color
+			input#tatColor(type='text', name='tatColor', value=tatColor)
+		div.form-group
+			label.tattooAttr(for='tatLocation') Tattoo Location
+			input#tatLocation(type='text', name='tatLocation', value=tatLocation)
+		input(type='submit')
+	
+	script.
+		document.forms['TattooForm'].addEventListener('submit', (event) => {
+			event.preventDefault();
+			fetch(event.target.action, {
+			method: 'PUT',
+			body: new URLSearchParams(new FormData(event.target))
+		}).then((resp) => {
+			return resp.json();
+		}).then((body) => {
+			alert("Update succeeded")
+		}).catch((error) => {
+			alert("Update failed " + error)
+		});
+		});
