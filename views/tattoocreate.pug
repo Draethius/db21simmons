@@ -1,0 +1,30 @@
+extends layout
+
+block content
+	h1 = title
+
+	form(id='TattooForm', action="/resource/tattoo", method="POST")
+		div.form-group
+			label.tattooAttr(for='tatNum') Tattoo Number
+			input#tatNum(type='number', name='number')
+		div.form-group
+			label.tattooAttr(for='tatColor') Tattoo Color
+			input#tatColor(type='text', name='color')
+		div.form-group
+			label.tattooAttr(for='tatLocation') Tattoo Location
+			input#tatLocation(type='text', name='location')
+		input(type='submit')
+	script.
+		document.forms['TattooForm'].addEventListener('submit', (event) => {
+			event.preventDefault();
+			fetch(event.target.action, {
+				method:'POST',
+				body: new URLSearchParams(new FormData(event.target))
+				}).then((resp) => {
+					return resp.json();
+				}).then((body) => {
+					alert("Save succeeded")
+				}).catch((error) => {
+					alert("Save failed " + error)
+				});
+			});

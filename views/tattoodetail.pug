@@ -1,0 +1,22 @@
+extends layout
+
+block content
+	h1 = title
+
+	- let tattooid = toShow._id
+	- let tatNum = toShow.tatNum
+	- let tatColor = toShow.tatColor
+	- let tatLocation = toShow.tatLocation
+	div
+		div.row
+			div(class='tattooAttr mr-3') Tattoo ID is:
+			div #{tattooid}
+		div.row
+			div(class='tattooAttr mr-3') Number of Tattoos is: 
+			div #{tatNum}
+		div.row
+			div(class='tattooAttr mr-3') Tattoo Color is: 
+			div #{tatColor}
+		div.row
+			div(class='tattooAttr mr-3') Tattoo Location is: 
+			div #{tatLocation}
