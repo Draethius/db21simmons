@@ -116,3 +116,15 @@ exports.tattoo_update_Page = async function(req,res){
 		res.send(`{'error': '${err}'}`);
 	}
 };
+
+exports.tattoo_delete_Page = async function(req,res) {
+	console.log("Delete view for id " + req.query.id)
+	try{
+		result = await Tattoo.findById(req.query.id)
+		res.render('tattoodelete',{ title: 'Tattoo Delete', toShow: result});
+	}
+	catch(err){
+		res.status(500)
+		res.send(`{'error': '${err}'}`);
+	}
+};

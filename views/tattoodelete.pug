@@ -1,0 +1,49 @@
+extends layout
+
+block content
+	h1 = title
+
+	if(toShow == null)
+		h2 No instance to delete
+	else
+		-let tattooid = toShow._id
+		-let tatNum = toShow.tatNum
+		-let tatColor = toShow.tatColor
+		-let tatLocation = toShow.tatLocation
+		-let actionid = "/resource/tattoo/" + tattooid
+		script let actionid = "#{actionid}"
+		div
+			div.row
+				div(class='tattooAttr mr-3') Tattoo ID is: 
+				div #{tattooid}
+			div.row
+				div(class='tattooAttr mr-3') Number of Tattoos is: 
+				div #{tatNum}
+			div.row
+				div(class='tattooAttr mr-3') Tattoo Color is: 
+				div #{tatColor}
+			div.row
+				div(class='tattooAttr mr-3') Tattoo Location is: 
+				div #{tatLocation}
+
+		button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete
+		button(class="btn btn-secondary m-2" onclick="cancel()") Cancel
+
+	script.
+		function cancel(){
+			window.location.href='/tattoo'
+		}
+	script.
+		function deleteOnid(){
+			console.log("starting delete")
+			fetch(actionid, {
+				method: 'DELETE'
+			}).then((resp) => {
+				return resp.json();
+			}).then((body) => {
+				alert("Delete succeeded")
+				window.location.href='/costumes'
+			}).catch((error) => {
+				alert("Delete failed " + error)
+			});
+		}
