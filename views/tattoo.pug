@@ -2,14 +2,14 @@ extends layout
 
 block content
   h1= title
+  - let items = results;
   div(class="container-fluid")
-    div(class="row")
-      -
-        let stuff = results
-      each ply, index in stuff
-        div(class="col-sm-2") #{ply.tatLocation}
-        div(class="col-sm-2") #{ply.tatColor}
-        div(class="col-sm-2") #{ply.tatNum}
-
-
-
+    div(class="row m-1")
+    each item in items
+      -let destination = `dispatch(\"/tattoo/update?id=${item._id}\")`
+        div(class="row-sm-2", class="m-1") Tattoo #{item.tatNum}(on the #{item.tatLocation}) is #{item.tatColor}
+        button.btn(class="btn-primary m1-1", onClick= destination) Update
+  script.
+    function dispatch(path){
+      window.location.href = path;
+    }
